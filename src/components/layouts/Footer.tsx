@@ -29,7 +29,7 @@ const Footer = () => {
           >
             <Typography variant="h6">تماس با ما</Typography>
             <Typography variant="body2">
-              ایمیل: h.mousavi910@@example.com
+              ایمیل: h.mousavi910@gmail.com
             </Typography>
             <Typography variant="body2">تلفن: 09171837298</Typography>
           </Grid>
