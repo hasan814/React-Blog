@@ -16,7 +16,7 @@ const Header = () => {
           وبلاگ
         </Typography>
         <Link to={"/"}>
-          <BookIcon color="white" />
+          <BookIcon />
         </Link>
       </Toolbar>
     </AppBar>

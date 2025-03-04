@@ -1,11 +1,11 @@
-import { GET_BLOGS_INFO } from "../../graphql/queries";
+import { GET_BLOGS_INFO } from "../../../graphql/queries";
 import { v4 as uuidv4 } from "uuid";
 import { useQuery } from "@apollo/client";
-import { ICardEL } from "../../types";
+import { ICardEL } from "../../../types";
 
-import Loading from "./Loading";
-import CardEL from "../Elements/CardEL";
-import Error from "./Error";
+import Loading from "../../Elements/Loading";
+import CardEL from "../../Elements/CardEL";
+import Error from "../../Elements/Error";
 import Grid from "@mui/material/Grid2";
 
 const Blog = () => {

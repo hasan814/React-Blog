@@ -1,12 +1,12 @@
-import { GET_AUTHORS_INFO } from "../../graphql/queries";
+import { GET_AUTHORS_INFO } from "../../../graphql/queries";
 import { v4 as uuidv4 } from "uuid";
 import { Typography } from "@mui/material";
 import { useQuery } from "@apollo/client";
-import { IAuthor } from "../../types";
+import { IAuthor } from "../../../types";
 
-import AuthorCard from "../Elements/AuthorCard";
-import Loading from "./Loading";
-import Error from "./Error";
+import AuthorCard from "../../Elements/AuthorCard";
+import Loading from "../../Elements/Loading";
+import Error from "../../Elements/Error";
 import Grid from "@mui/material/Grid2";
 
 const Authors = () => {

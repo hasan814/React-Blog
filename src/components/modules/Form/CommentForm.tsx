@@ -1,6 +1,6 @@
 import { Button, TextField, Typography } from "@mui/material";
-import { ICommentFormProps } from "../../types";
-import { SEND_COMMENT } from "../../graphql/mutations";
+import { ICommentFormProps } from "../../../types";
+import { SEND_COMMENT } from "../../../graphql/mutations";
 import { useMutation } from "@apollo/client";
 import { useState } from "react";
 

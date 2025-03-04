@@ -5,10 +5,10 @@ import { useQuery } from "@apollo/client";
 
 import ArrowBackRoundedIcon from "@mui/icons-material/ArrowBackRounded";
 import sanitizeHTML from "sanitize-html";
-import CommentForm from "../modules/CommentForm";
-import Comments from "../modules/Comments";
-import Loading from "../modules/Loading";
-import Error from "../modules/Error";
+import CommentForm from "../modules/Form/CommentForm";
+import Comments from "../modules/Form/Comments";
+import Loading from "../Elements/Loading";
+import Error from "../Elements/Error";
 import Grid from "@mui/material/Grid2";
 
 const BlogPage = () => {

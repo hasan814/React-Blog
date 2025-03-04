@@ -1,11 +1,11 @@
-import { ICommentProps, IComment } from "../../types";
 import { Avatar, Box, Typography } from "@mui/material";
-import { GET_POST_COMMENTS } from "../../graphql/queries";
+import { IComment, ICommentProps } from "../../../types";
+import { GET_POST_COMMENTS } from "../../../graphql/queries";
 import { v4 as uuidv4 } from "uuid";
 import { useQuery } from "@apollo/client";
 
-import Loading from "./Loading";
 import Grid from "@mui/material/Grid2";
+import Loading from "../../Elements/Loading";
 
 const Comments: React.FC<ICommentProps> = ({ slug }) => {
   // ============= Check Slug First ==============

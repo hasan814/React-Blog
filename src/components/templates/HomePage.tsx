@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 
-import Authors from "../modules/Authors";
+import Authors from "../modules/Authors/Authors";
 import Grid from "@mui/material/Grid2";
-import Blog from "../modules/Blog";
+import Blog from "../modules/Blog/Blog";
 
 const HomePage = () => {
   return (

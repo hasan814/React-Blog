@@ -5,9 +5,9 @@ import { GET_AUTHOR_INFO } from "../../graphql/queries";
 import { useQuery } from "@apollo/client";
 
 import sanitizeHTML from "sanitize-html";
-import Loading from "../modules/Loading";
+import Loading from "../Elements/Loading";
 import CardEL from "../Elements/CardEL";
-import Error from "../modules/Error";
+import Error from "../Elements/Error";
 import Grid from "@mui/material/Grid2";
 
 const AuthorPage: React.FC = () => {
