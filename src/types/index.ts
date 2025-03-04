@@ -61,3 +61,14 @@ export interface IComment {
   name: string;
   email?: string;
 }
+
+export interface IAuthorHeader {
+  avatarUrl: string;
+  name: string;
+  field: string;
+}
+
+export interface IAuthorPosts {
+  name: string;
+  posts: IAuthorPageProps["posts"];
+}
