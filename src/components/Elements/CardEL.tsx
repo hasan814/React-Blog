@@ -37,6 +37,7 @@ const CardEL = ({ title, slug, coverPhoto, author }: ICardEL) => {
           </Typography>
         }
       />
+
       <CardMedia
         component="img"
         height="194"

@@ -30,3 +30,19 @@ export interface IAuthorCardProps {
 export interface AuthorCardProps extends IAuthorCardProps {
   isLast: boolean;
 }
+
+export interface IPost {
+  id: string;
+  title: string;
+  slug: string;
+  coverPhoto: { url: string };
+  author: { name: string; avatar: { url: string } };
+}
+
+export interface IAuthorPageProps {
+  avatar: { url: string };
+  name: string;
+  field: string;
+  description: { html: string };
+  posts: IPost[];
+}
