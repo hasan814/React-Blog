@@ -46,3 +46,18 @@ export interface IAuthorPageProps {
   description: { html: string };
   posts: IPost[];
 }
+
+export interface ICommentFormProps {
+  slug: string | undefined;
+}
+
+export interface ICommentProps {
+  slug: string | undefined;
+}
+
+export interface IComment {
+  id: string;
+  text: string;
+  name: string;
+  email?: string;
+}

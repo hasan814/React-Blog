@@ -57,3 +57,38 @@ query getAuthorInfo($slug:String!){
   }
 }
 `
+
+
+export const GET_POST_INFO = gql`
+query getPost($slug:String!){
+  post(where: {slug: $slug}) {
+    author {
+      ... on Author {
+        id
+        name
+        avatar {
+          url
+        }
+        field
+      }
+    }
+    content {
+      html
+    }
+    title
+    coverPhoto {
+      url
+    }
+  }
+}
+`
+
+export const GET_POST_COMMENTS = gql`
+  query getPostComments($slug:String!){
+    comments(where:{post:{slug:$slug}}){
+      id,
+      name,
+      text
+    }
+  }
+`
