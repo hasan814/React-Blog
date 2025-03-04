@@ -1,37 +1,40 @@
-import { Button, TextField, Typography } from "@mui/material";
 import { ICommentFormProps } from "../../../types";
 import { SEND_COMMENT } from "../../../graphql/mutations";
 import { useMutation } from "@apollo/client";
+import { Typography } from "@mui/material";
 import { useState } from "react";
 
+import SubmitButton from "./SubmitButton";
+import FormField from "./FormField";
 import toast from "react-hot-toast";
 import Grid from "@mui/material/Grid2";
 
 const CommentForm = ({ slug }: ICommentFormProps) => {
   // ============= State =============
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [text, setText] = useState("");
+  const [formData, setFormData] = useState({ name: "", email: "", text: "" });
 
   // ============= Mutation =============
   const [sendComment, { loading, error }] = useMutation(SEND_COMMENT);
 
-  // ============= Send Function =============
+  // ============= Change Handler =============
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
+
+  // ============= Send Handler =============
   const sendHandler = async () => {
     try {
-      await sendComment({ variables: { name, email, text, slug } });
+      await sendComment({ variables: { ...formData, slug } });
 
-      setName("");
-      setEmail("");
-      setText("");
-
+      setFormData({ name: "", email: "", text: "" });
       toast.success("اطلاعات با موفقیت ارسال شد!");
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        toast.error(err.message);
-      } else {
-        toast.error("An unknown error occurred.");
-      }
+    } catch (err) {
+      toast.error(
+        err instanceof Error ? err.message : "An unknown error occurred."
+      );
     }
   };
 
@@ -51,43 +54,35 @@ const CommentForm = ({ slug }: ICommentFormProps) => {
           فرم ارسال کامنت
         </Typography>
       </Grid>
-      <Grid size={12} m={2}>
-        <TextField
-          value={name}
-          label="نام کاربری"
-          variant="outlined"
-          sx={{ width: "100%" }}
-          onChange={(event) => setName(event.target.value)}
-        />
-      </Grid>
-      <Grid size={12} m={2}>
-        <TextField
-          value={email}
-          label="ایمیل"
-          variant="outlined"
-          sx={{ width: "100%" }}
-          onChange={(event) => setEmail(event.target.value)}
-        />
-      </Grid>
-      <Grid size={12} m={2}>
-        <TextField
-          multiline
-          minRows={4}
-          value={text}
-          label="متن کامنت"
-          variant="outlined"
-          sx={{ width: "100%" }}
-          onChange={(event) => setText(event.target.value)}
-        />
-      </Grid>
-      <Grid size={12} m={2}>
-        <Button variant="contained" onClick={sendHandler} disabled={loading}>
-          {loading ? "در حال ارسال..." : "ارسال"}
-        </Button>
-      </Grid>
+
+      <FormField
+        name="name"
+        label="نام کاربری"
+        value={formData.name}
+        onChange={handleChange}
+      />
+      <FormField
+        name="email"
+        label="ایمیل"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <FormField
+        name="text"
+        label="متن کامنت"
+        value={formData.text}
+        onChange={handleChange}
+        multiline
+        minRows={4}
+      />
+
+      <SubmitButton onClick={sendHandler} loading={loading} />
+
       {error && (
         <Grid size={12} m={2}>
-          <Typography color="error">خطا در ارسال نظر!</Typography>
+          <Typography color="error">
+            {error.message || "خطا در ارسال نظر!"}
+          </Typography>
         </Grid>
       )}
     </Grid>

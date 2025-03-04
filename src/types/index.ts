@@ -72,3 +72,34 @@ export interface IAuthorPosts {
   name: string;
   posts: IAuthorPageProps["posts"];
 }
+
+export interface IBlogHeader {
+  title: string;
+  onBack: () => void;
+}
+
+export interface IBlogImage {
+  src: string;
+  alt: string
+}
+
+export interface IBlogAuthor {
+  avatarUrl: string;
+  name: string;
+  field: string;
+}
+
+export interface IFormFieldProps {
+  name: string;
+  label: string;
+  value: string;
+  minRows?: number;
+  multiline?: boolean;
+  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+
+export interface ISubmitBtn {
+  onClick: () => void;
+  loading: boolean;
+}

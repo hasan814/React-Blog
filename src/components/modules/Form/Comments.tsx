@@ -1,31 +1,27 @@
-import { Avatar, Box, Typography } from "@mui/material";
 import { IComment, ICommentProps } from "../../../types";
 import { GET_POST_COMMENTS } from "../../../graphql/queries";
-import { v4 as uuidv4 } from "uuid";
+import { Typography } from "@mui/material";
 import { useQuery } from "@apollo/client";
 
-import Grid from "@mui/material/Grid2";
+import CommentItem from "./CommentItem";
 import Loading from "../../Elements/Loading";
+import Grid from "@mui/material/Grid2";
 
 const Comments: React.FC<ICommentProps> = ({ slug }) => {
-  // ============= Check Slug First ==============
-  if (!slug) {
-    return <Typography color="error">Error: Invalid slug</Typography>;
-  }
-
   // ============= Query ==============
   const { loading, data } = useQuery<{ comments: IComment[] }>(
     GET_POST_COMMENTS,
-    { variables: { slug } }
+    {
+      variables: { slug },
+      skip: !slug,
+    }
   );
 
-  // =============== Error Handling =================
+  // ============= Loading & Error Handling ==============
+  if (!slug) return <Typography color="error">Error: Invalid slug</Typography>;
   if (loading) return <Loading />;
-  if (!data?.comments || data.comments.length === 0) {
+  if (!data?.comments?.length)
     return <Typography>No Comments Found.</Typography>;
-  }
-
-  const { comments } = data;
 
   // ============= Rendering ==============
   return (
@@ -43,23 +39,8 @@ const Comments: React.FC<ICommentProps> = ({ slug }) => {
           کامنت ها
         </Typography>
 
-        {comments.map((comment) => (
-          <Grid
-            m={2}
-            p={2}
-            size={12}
-            key={uuidv4()}
-            borderRadius={1}
-            border={"1px solid silver"}
-          >
-            <Box display="flex" alignItems="center" mb={3}>
-              <Avatar>{comment.name?.charAt(0) || "?"}</Avatar>
-              <Typography variant="body1" fontWeight={700} ml={1}>
-                {comment.name || "ناشناس"}
-              </Typography>
-            </Box>
-            <Typography variant="body2">{comment.text}</Typography>
-          </Grid>
+        {data.comments.map((comment) => (
+          <CommentItem key={comment.id} {...comment} />
         ))}
       </Grid>
     </Grid>
