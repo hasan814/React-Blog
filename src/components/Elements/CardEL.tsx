@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
 import { ICardEL } from "../../types";
+import { Link } from "react-router-dom";
+
 import {
   Avatar,
   Button,
@@ -13,9 +14,11 @@ import {
 } from "@mui/material";
 
 const CardEL = ({ title, slug, coverPhoto, author }: ICardEL) => {
+  // ================ Destructures ================
   const { name, avatar } = author || {};
   const avatarUrl = avatar?.url || "/default-avatar.png";
 
+  // ================ Rendering ================
   return (
     <Card
       sx={{
@@ -23,7 +26,7 @@ const CardEL = ({ title, slug, coverPhoto, author }: ICardEL) => {
         flexDirection: "column",
         boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px",
         borderRadius: 4,
-        height: "100%", // Ensures the card takes full height if needed
+        height: "100%",
       }}
     >
       <CardHeader
@@ -41,7 +44,6 @@ const CardEL = ({ title, slug, coverPhoto, author }: ICardEL) => {
         alt={slug}
       />
 
-      {/* Ensuring CardContent expands to fill available space */}
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography variant="h6" color="text.primary" fontWeight={500}>
           {title}
