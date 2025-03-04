@@ -1,16 +1,23 @@
 import { Outlet } from "react-router-dom";
+import { Container, Box } from "@mui/material";
 
 import Header from "./components/layouts/Header";
 import Footer from "./components/layouts/Footer";
-import { Container } from "@mui/material";
 
 const App = () => {
   return (
-    <Container maxWidth={"lg"}>
+    <Container
+      maxWidth="lg"
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "100vh",
+      }}
+    >
       <Header />
-      <main>
+      <Box component="main" sx={{ flexGrow: 1 }}>
         <Outlet />
-      </main>
+      </Box>
       <Footer />
     </Container>
   );

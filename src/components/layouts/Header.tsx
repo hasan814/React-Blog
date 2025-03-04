@@ -1,5 +1,7 @@
 import { AppBar, Toolbar, Typography } from "@mui/material";
+
 import BookIcon from "@mui/icons-material/Book";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,7 +15,9 @@ const Header = () => {
         >
           وبلاگ
         </Typography>
-        <BookIcon />
+        <Link to={"/"}>
+          <BookIcon color="white" />
+        </Link>
       </Toolbar>
     </AppBar>
   );
