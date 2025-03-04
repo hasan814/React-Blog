@@ -4,7 +4,7 @@ import { Typography } from "@mui/material";
 import { useQuery } from "@apollo/client";
 import { IAuthor } from "../../types";
 
-import AuthorCard from "./AuthorCard";
+import AuthorCard from "../Elements/AuthorCard";
 import Loading from "./Loading";
 import Error from "./Error";
 import Grid from "@mui/material/Grid2";
